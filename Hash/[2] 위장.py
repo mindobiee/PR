@@ -25,6 +25,7 @@ def solution(clothes):
     #         answer = answer * (val + 1)
     #     return (answer-1)
 
+
 if __name__ == "__main__":
     print(solution(clothes=[['yellow_hat', 'headgear'], ['blue_sunglasses', 'eyewear'],
                       ['green_turban', 'headgear']]))
