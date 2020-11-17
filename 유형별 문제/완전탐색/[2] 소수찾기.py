@@ -36,4 +36,4 @@ def solution(numbers):
                 answer=answer+1
     return answer
 
-print(solution("17"))
+print(solution("110"))
