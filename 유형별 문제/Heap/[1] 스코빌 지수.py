@@ -35,7 +35,7 @@ def solution(scoville, K):
         answer += 1
 
         new = heapq.heappop(scoville)  # 가장 작은 값이 꺼내진다.(힙의 이름 명시하는 것 잊지 말기)
-        if not scoville:
+        if not scoville: # 모두 탐색했을 때까지 최종 기준에 맞지 않을 때
             return -1
         new += heapq.heappop(scoville) * 2
         heapq.heappush(scoville, new)
