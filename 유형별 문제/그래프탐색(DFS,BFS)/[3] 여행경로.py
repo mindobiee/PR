@@ -20,16 +20,19 @@ def dfs(n,answer,tickets,ic):
 
 
 def solution(tickets):
-    ic=[]
+
     tickets=sorted(tickets,key=lambda x:x[1])
     print(tickets)
     # ICN 알파벳 순서로 출발 리스트 정하기
     for i in range(0,len(tickets)):
         if tickets[i][0]=="ICN":
+            ic=[] # 나중에 답이 나올 것을 대비해서 추가
             answer = [tickets[i][0]]
             ic.append(i)
             dfs(i, answer, tickets, ic)
-            return answer
+            if len(ic)==len(tickets):
+                return answer
+
 
 
 
