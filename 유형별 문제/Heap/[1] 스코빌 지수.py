@@ -1,5 +1,6 @@
+# https://programmers.co.kr/learn/courses/30/lessons/42626
 # 가장 작은 두 개의 지수->새로운 지수 + 원래 지수
-# 1: test ok, but 런타임에러, 실패, 시간초과
+# 1: test ok, but 런타임에러(데크의 pop 문제), 시간초과
 
 
 from collections import deque
@@ -20,8 +21,8 @@ def solution1(scoville, K):
 
 
 
-# 2. Heapq 이용하기
-# ok!! with everything (정확성, 효율성)
+# 2. Heapq 이용하기 => 한번에 최소(min) 값을 빠르게 pop할 수 있다.
+# everything (정확성, 효율성) ok
 
 import heapq
 
