@@ -8,6 +8,10 @@ def solution(numbers):
     # numbers 길이만큼 순열 구하기! 1<=n<=len(numbers)
     for n in range(1, len(numbers) + 1):
         all_numbers.append(list(permutations(numbers, n)))
+    # print(all_numbers)
+    # [[('1',), ('1',), ('0',)],
+    # [('1', '1'), ('1', '0'), ('1', '1'), ('1', '0'), ('0', '1'), ('0', '1')],
+    # [('1', '1', '0'), ('1', '0', '1'), ('1', '1', '0'), ('1', '0', '1'), ('0', '1', '1'), ('0', '1', '1')]]
 
     # list를 문자열로 바꾸어서 집합 set()에 넣기 (중복 x)
     set_numbers=set()
@@ -16,6 +20,7 @@ def solution(numbers):
             temp='' # 각 순열 별로 문자열로 만들어주기
             for k in range(len(all_numbers[i][j])):
                 temp = temp + all_numbers[i][j][k]
+                # print(temp)
             # 저장한 문자열을 int형으로 set에 넣어주기 (0이 앞에 나오는 것 제거해줌)
             set_numbers.add(int(temp))
 
@@ -37,3 +42,4 @@ def solution(numbers):
     return answer
 
 print(solution("110"))
+# 정답 : 2 (11,101)
