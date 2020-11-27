@@ -7,21 +7,28 @@ def solution(genres, plays):
             dic[genres[i]] = plays[i]
         else:
             dic[genres[i]] = dic.get(genres[i]) + plays[i]
-    # plays수 (value값) 순으로 정렬하기
-    res = sorted(dic, key=(lambda x: x[1]), reverse=True)
-    print(res)
-    # 각 genre에서 재생수가 많은 곡 두 개 정해서 list-up
-    # 3번 항목도 고려할 대상 ! (재생 횟수가 같은 노래일 경우)
-    for gen in res:
-        temp = []
-        for i in range(len(genres)):
-            if gen == genres[i]:
-                temp.append([plays[i],i])
-        temp.sort(reverse=True) # 첫 번째 인수를 기준으로 정렬됨(plays수)
-        print(temp)
-        answer.append(temp[0][1])
-        answer.append(temp[1][1])
 
+    # 각각의 plays수를 저장하는 list 만들기
+    songs = []
+    for i in range(len(genres)):
+        songs.append([i, genres[i], plays[i]])
+    songs = sorted(songs, key=lambda x: (x[2],x[0]), reverse=True)  # plays 큰 순서대로
+    # 3번) 재생 횟수가 같을 경우에는, 고유 번호가 낮은 노래먼저! -> 여러 개의 요소 인 경우 :튜플로 사용 가능
+    print(songs)
+
+    # plays수 (value값) 순으로 정렬하기
+    dic = sorted(dic, reverse=True)
+
+    # 각 genre에서 재생수가 많은 곡 두 개 정해서 list-up
+    # 이미 정렬되어 있는 것을 기준으로 !
+    for genre in dic:  # 1번 ) 가장 많이 재생된 장르 순서대로
+        count = 0
+        for i in range(len(songs)):  # 장르 내에서 많이 재생된 노래 먼저 수록
+            if genre == songs[i][1] and count < 2:
+                answer.append(songs[i][0])
+                count += 1
+            elif count >= 2:
+                break
     return answer
 
 
