@@ -16,3 +16,11 @@ FROM ANIMAL_INS
 GROUP BY NAME
 HAVING COUNT(NAME) >= 2
 -- 왜 틀렸지??
+
+-- 연습문제
+-- EMPLOYEES 테이블을 이용해 지점 별 총급여액이 얼마인지 조회하는 SQL문을 작성해주세요.
+-- 단, 결과는 지점의 ID순으로 정렬되어야 합니다.
+SELECT BRANCH_ID, SUM(SALARY) AS TOTAL
+FROM EMPLOYEES
+GROUP BY BRANCH_ID
+ORDER BY BRANCH_ID ASC
