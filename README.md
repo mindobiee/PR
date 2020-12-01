@@ -9,6 +9,22 @@
 ### 완전탐색
 - [x] 카페트
 - [x] 소수찾기
+
+#### 순열
+```python
+from itertools import permutations
+array=['A','B','C']
+
+result=list(permutations(array, len(array))) # 해당 리스트에서 해당 갯수만큼의 순열 구하기 
+print(result)
+# [('A', 'B', 'C'), ('A', 'C', 'B'), ('B', 'A', 'C'), ('B', 'C', 'A'), ('C', 'A', 'B'), ('C', 'B', 'A')]
+
+rresult=[]
+for i in result: # 해당 문자열 리스트를 문자열로 바꾸기
+    rresult.append(''.join(i))
+print(rresult)
+# ['ABC', 'ACB', 'BAC', 'BCA', 'CAB', 'CBA']
+```
 ### 정렬
 - [x] 가장 큰 수
 ### Hash
@@ -31,7 +47,9 @@ for key in keys: # 반복문을 이용 가능
     print(key) # person, bird
 
 if "person" in dic: # 해당 key 값이 있는지 확인 
-    print(True) # False
+    print(True)
+else:
+    print(False)
 ```
 
 ### Heap
@@ -45,7 +63,7 @@ if "person" in dic: # 해당 key 값이 있는지 확인
 import heapq
 
 h=[3,4,1,2,5]
-heapq.heqpify(h)# 리스트를 힙으로 바꾸기
+heapq.heapify(h)# 리스트를 힙으로 바꾸기
 while h:
     new=heapq.heappop(h) # 삭제
     ...
@@ -103,11 +121,52 @@ bfs(graph,1,visited)
 ### 그리디
 - [x] 큰 수 만들기
 - [x] 구명보트 
+#### List의 활용
+```python
+def solution(number,k):
+    list=[number[0]]
+    for i in number[1:]: # 인덱스 1번부터 
+        while len(list)>0 and list[-1]<i and k>0:
+            k=-1
+            list.pop() # 맨 뒤의 원소 
+        list.append(i) # 원소의 추가                 
+
+
+list1=['hello','nice','to','meet','you'] # 리스트 생성과 동시에 초기화
+list1.insert(1,'bye') # 해당 인덱스에 원소 추가
+list1.remove('hello') # 해당 원소 제거
+list1.count('bye') # 해당 원소 갯수 계수
+list1.sort() # 오름차순 정렬
+del list1[1:3] # 범위를 지정해서 삭제
+list1.pop(1) # 해당 인덱스의 원소 제거
+```
+
+
 ### 스택, 큐
 - [x] 프린터
 - [ ] 기능개발
 ### DP
 - [ ] 정수 삼각형
+
+#### 문제 접근 방법 
+- 중복 되는 연산을 줄이자!
+- 메모리 공간을 사용하여(Memoization) 연산 속도를 증가시키는 방법 
+  - 큰 문제에서 작은 문제를 나눌 수 있다. **(최적 부분 구조)** 
+  - 작은 문제에서 구한 정답은 그것을 포함하는 큰 문제에서도 동일하다. **(중복되는 문제)**
+- 예) 피보나치 수열
+```python
+def solution(n):
+    d = [0] * 100 # DP 테이블의 초기화 
+    for i in range(0, n + 1): # Bottom-up 방식
+        if i == 0:
+            d[0] = 0
+        elif i == 1 or i == 2:
+            d[i] = 1
+        else:
+            d[i] = d[i - 1] + d[i - 2] # 앞서 저장해둔 것 활용!
+    return d[n]
+```  
+
 ### 최단경로
 - [x] 다익스트라
 - [x] 플로이드
